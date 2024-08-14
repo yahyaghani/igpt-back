@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
 
@@ -262,6 +262,30 @@ def get_jobs_data():
         }
     ]
     return jsonify(jobs_data)
+
+@app.route('/signup', methods=['POST'])
+def signup():
+    """
+    Handles user signup requests.
+
+    Returns:
+        A JSON response indicating success or failure.
+    """
+    data = request.get_json()
+
+    # Basic validation (you should implement more robust validation)
+    if not all(key in data for key in ['name', 'email', 'password']):
+        return jsonify({"error": "Missing required fields"}), 400
+
+    # In the real app, you would:
+    # 1. Hash the password
+    # 2. Check if the email is already registered
+    # 3. Store the user data in a database
+
+    # For simplicity, we'll just simulate success
+    return jsonify({"message": "Signup successful"}), 201
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
