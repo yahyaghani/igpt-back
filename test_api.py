@@ -1,7 +1,64 @@
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
-
+programs_data = [
+        {
+            "name": "Intro to Programming",
+            "field": "CS",
+            "time": "2 - 4 hours",
+            "level": "Beginner",
+            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum atque.",
+            "img": "https://cdn.prod.website-files.com/5d4955a615f2c1cba8fdc3f9/623dda7e41299b3cacaacc16_HTML_Blog-scaled.jpeg"
+        },
+        {
+            "name": "Intro to Machine Learning",
+            "field": "AI",
+            "time": "3 - 5 hours",
+            "level": "Intermediate",
+            "description": "Learn the basics of machine learning and build your first model.",
+            "img": "https://atriainnovation.com/uploads/2023/11/portada-9.jpg"
+        },
+        {
+            "name": "Digital Marketing",
+            "field": "Marketing",
+            "time": "4 - 6 hours",
+            "level": "Beginner",
+            "description": "Understand the key concepts and strategies in digital marketing.",
+            "img": "https://i.ytimg.com/vi/WUniTVTi_Jk/maxresdefault.jpg"
+        },
+        {
+            "name": "Financial Accounting",
+            "field": "Finance",
+            "time": "6 - 8 hours",
+            "level": "Beginner",
+            "description": "Gain a solid foundation in financial accounting principles and practices.",
+            "img": "img.jpg"
+        },
+        {
+            "name": "DSA",
+            "field": "CS",
+            "time": "5 - 7 hours",
+            "level": "Intermediate",
+            "description": "Master the fundamental data structures and algorithms used in computer science.",
+            "img": "https://media.licdn.com/dms/image/C4D12AQEpdTFFFWiIAA/article-cover_image-shrink_600_2000/0/1581342345742?e=2147483647&v=beta&t=ihU8uxgNbJ-UxIIVDB9h-vyIvdQshmllY5PDHE8Kj-g"
+        },
+        {
+            "name": "Graphic Design Basics",
+            "field": "Design",
+            "time": "2 - 3 hours",
+            "level": "Beginner",
+            "description": "Discover the essentials of graphic design, including tools and techniques.",
+            "img": "img.jpg"
+        },
+        {
+            "name": "Project Management",
+            "field": "Business",
+            "time": "5 - 7 hours",
+            "level": "Intermediate",
+            "description": "Learn effective project management strategies to lead successful projects.",
+            "img": "img.jpg"
+        }
+    ]
 @app.route('/chat')
 def get_chat_data():
     chat_data = [
@@ -141,64 +198,7 @@ def get_tasks_data():
 
 @app.route('/programs')
 def get_programs_data():
-    programs_data = [
-        {
-            "name": "Intro to Programming",
-            "field": "CS",
-            "time": "2 - 4 hours",
-            "level": "Beginner",
-            "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum atque.",
-            "img": "https://cdn.prod.website-files.com/5d4955a615f2c1cba8fdc3f9/623dda7e41299b3cacaacc16_HTML_Blog-scaled.jpeg"
-        },
-        {
-            "name": "Intro to Machine Learning",
-            "field": "AI",
-            "time": "3 - 5 hours",
-            "level": "Intermediate",
-            "description": "Learn the basics of machine learning and build your first model.",
-            "img": "https://atriainnovation.com/uploads/2023/11/portada-9.jpg"
-        },
-        {
-            "name": "Digital Marketing",
-            "field": "Marketing",
-            "time": "4 - 6 hours",
-            "level": "Beginner",
-            "description": "Understand the key concepts and strategies in digital marketing.",
-            "img": "https://i.ytimg.com/vi/WUniTVTi_Jk/maxresdefault.jpg"
-        },
-        {
-            "name": "Financial Accounting",
-            "field": "Finance",
-            "time": "6 - 8 hours",
-            "level": "Beginner",
-            "description": "Gain a solid foundation in financial accounting principles and practices.",
-            "img": "img.jpg"
-        },
-        {
-            "name": "DSA",
-            "field": "CS",
-            "time": "5 - 7 hours",
-            "level": "Intermediate",
-            "description": "Master the fundamental data structures and algorithms used in computer science.",
-            "img": "https://media.licdn.com/dms/image/C4D12AQEpdTFFFWiIAA/article-cover_image-shrink_600_2000/0/1581342345742?e=2147483647&v=beta&t=ihU8uxgNbJ-UxIIVDB9h-vyIvdQshmllY5PDHE8Kj-g"
-        },
-        {
-            "name": "Graphic Design Basics",
-            "field": "Design",
-            "time": "2 - 3 hours",
-            "level": "Beginner",
-            "description": "Discover the essentials of graphic design, including tools and techniques.",
-            "img": "img.jpg"
-        },
-        {
-            "name": "Project Management",
-            "field": "Business",
-            "time": "5 - 7 hours",
-            "level": "Intermediate",
-            "description": "Learn effective project management strategies to lead successful projects.",
-            "img": "img.jpg"
-        }
-    ]
+    
     return jsonify(programs_data)
 
 @app.route('/jobs')
@@ -283,7 +283,7 @@ def signup():
     # 3. Store the user data in a database
 
     # For simplicity, we'll just simulate success
-    return jsonify({"message": "Signup successful","context":"programs1,programs2,programs3"}), 201
+    return jsonify({"message": "Signup successful","context":programs_data}), 201
 
 
 
