@@ -283,7 +283,7 @@ def signup():
     # 3. Store the user data in a database
 
     # For simplicity, we'll just simulate success
-    return jsonify({"message": "Signup successful"}), 201
+    return jsonify({"message": "Signup successful","context":"programs1,programs2,programs3"}), 201
 
 
 
