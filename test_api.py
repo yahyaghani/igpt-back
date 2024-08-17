@@ -1,6 +1,49 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app) 
+
+modules_data = [
+    {
+        "task_id": "module1",
+        "title": "Introduction to Web Development",
+        "overview": "Learn the basics of web development, including HTML, CSS, and JavaScript.",
+        "expected_time": "2 hours"
+    },
+    {
+        "task_id": "module2",
+        "title": "Frontend Development with React",
+        "overview": "Dive into React.js and learn how to build dynamic user interfaces.",
+        "expected_time": "3 hours"
+    },
+    {
+        "task_id": "module3",
+        "title": "Backend Development with Flask",
+        "overview": "Understand the fundamentals of backend development using Flask in Python.",
+        "expected_time": "3 hours"
+    },
+    {
+        "task_id": "module4",
+        "title": "RESTful APIs with Flask",
+        "overview": "Learn how to create RESTful APIs using Flask and connect them with a frontend.",
+        "expected_time": "2.5 hours"
+    },
+    {
+        "task_id": "module5",
+        "title": "Database Management with SQLAlchemy",
+        "overview": "Explore how to manage and interact with databases using SQLAlchemy.",
+        "expected_time": "2 hours"
+    },
+    {
+        "task_id": "module6",
+        "title": "Deploying Web Applications",
+        "overview": "Learn how to deploy your web applications using popular cloud platforms.",
+        "expected_time": "2 hours"
+    }
+]
+
 programs_data = [
         {
             "name": "Intro to Programming",
@@ -75,11 +118,18 @@ def get_chat_data():
     ]
     return jsonify(chat_data)
 
+@app.route('/response')
+def get_response_data():
+    response='a reponse has been recieved'
+    return jsonify({"response": response})
+
 @app.route('/tasks')
 def get_tasks_data():
     tasks_data = [
         {
             "tabnames": "Task One",
+            "task_id": "module1", 
+
             "details": {
                 "title": "Task One: Target information and auction process",
                 "duration": "30-60 mins   Advanced",
@@ -103,6 +153,7 @@ def get_tasks_data():
         },
         {
             "tabnames": "Task Two",
+            "task_id": "module2", 
             "details": {
                 "title": "Task Two: Target information and auction process",
                 "duration": "30-60 mins   Advanced",
@@ -126,6 +177,8 @@ def get_tasks_data():
         },
         {
             "tabnames": "Task Three",
+            "task_id": "module3", 
+
             "details": {
                 "title": "Task Three: Target information and auction process",
                 "duration": "30-60 mins   Advanced",
@@ -149,6 +202,8 @@ def get_tasks_data():
         },
         {
             "tabnames": "Task Four",
+            "task_id": "module4", 
+
             "details": {
                 "title": "Task Four: Target information and auction process",
                 "duration": "30-60 mins   Advanced",
@@ -172,6 +227,8 @@ def get_tasks_data():
         },
         {
             "tabnames": "Finish Line",
+            "task_id": "module5", 
+
             "details": {
                 "title": "Finish Line: Target information and auction process",
                 "duration": "30-60 mins   Advanced",
@@ -262,6 +319,14 @@ def get_jobs_data():
         }
     ]
     return jsonify(jobs_data)
+
+@app.route('/modules', methods=['GET'])
+def get_modules():
+    """
+    Returns the list of course modules.
+    """
+    return jsonify(modules_data)
+
 
 @app.route('/signup', methods=['POST'])
 def signup():
